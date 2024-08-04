@@ -3,13 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_account">
+    app:startDestination="@+id/navigation_auth">
 
     <fragment
         android:id="@+id/navigation_scan"
         android:name="com.example.scud.ui.scan.ScanFragment"
         android:label="@string/title_scan"
-        tools:layout="@layout/fragment_scan" />
+        tools:layout="@layout/fragment_scan" >
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_show"
@@ -22,4 +23,14 @@
         android:name="com.example.scud.ui.account.AccountFragment"
         android:label="@string/title_account"
         tools:layout="@layout/fragment_account" />
+
+    <fragment
+        android:id="@+id/navigation_auth"
+        android:name="com.example.scud.ui.auth.AuthFragment"
+        android:label="Авторизация"
+        tools:layout="@layout/fragment_auth">
+        <action
+            android:id="@+id/action_navigation_auth_to_navigation_account"
+            app:destination="@id/navigation_account" />
+    </fragment>
 </navigation>
