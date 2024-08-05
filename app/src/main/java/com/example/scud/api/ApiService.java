@@ -13,6 +13,6 @@ public interface ApiService {
     @GET("test")
     Call<DataModel> getField1();
 
-    @POST("api-token-auth/")
+    @POST("api/login/")
     Call<DataModel> authenticate(@Body AuthRequest authRequest);
 }

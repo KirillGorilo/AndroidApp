@@ -6,26 +6,17 @@
     android:layout_height="match_parent"
     tools:context=".ui.account.AccountFragment">
 
-    <Button
-        android:id="@+id/buttonAllUsers"
-        android:layout_width="417dp"
-        android:layout_height="48dp"
-        android:layout_marginBottom="176dp"
-        android:text="Все пользователи"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/editTextLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="296dp"
+        android:layout_marginBottom="3dp"
         android:ems="10"
         android:hint="Логин"
         android:inputType="text"
         android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/textViewEmail"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
@@ -122,10 +113,49 @@
         android:id="@+id/saveSettingsAccount"
         android:layout_width="match_parent"
         android:layout_height="49dp"
-        android:layout_marginBottom="3dp"
+        android:layout_marginBottom="4dp"
         android:text="Сохранить"
+        android:gravity="center"
         app:layout_constraintBottom_toTopOf="@+id/buttonAllUsers"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/buttonAllUsers"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginBottom="72dp"
+        android:gravity="center"
+        android:text="Все пользователи"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.166"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:gravity="center"
+        android:text="Mail"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextLogin" />
+
+    <EditText
+        android:id="@+id/editTextMail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="Mail"
+        android:inputType="text"
+        android:minHeight="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewEmail" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

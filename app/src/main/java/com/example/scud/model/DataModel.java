@@ -2,7 +2,8 @@ package com.example.scud.model;
 
 public class DataModel {
     private int pk;
-    private String token;
+    private String access;
+    private String refresh;
     private String login;
     private String email;
     private String qrcode;
@@ -11,20 +12,28 @@ public class DataModel {
     private String middleName;
     private String description;
 
+    public String getRefresh() {
+        return refresh;
+    }
+
+    public void setRefresh(String refresh) {
+        this.refresh = refresh;
+    }
+
+    public String getAccess() {
+        return access;
+    }
+
+    public void setAccess(String access) {
+        this.access = access;
+    }
+
     public int getPk() {
         return pk;
     }
 
     public void setPk(int pk) {
         this.pk = pk;
-    }
-
-    public String getToken() {
-        return token;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
     }
 
     public String getLogin() {

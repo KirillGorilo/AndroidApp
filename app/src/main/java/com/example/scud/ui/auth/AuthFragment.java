@@ -63,8 +63,15 @@ public class AuthFragment extends Fragment {
         viewModel.authenticate(login, password).observe(getViewLifecycleOwner(), dataModel -> {
             if (dataModel != null) {
                 Toast.makeText(getContext(), "Добро пожаловать", Toast.LENGTH_SHORT).show();
+
+                Bundle bundle = new Bundle();
+                bundle.putString("login", dataModel.getLogin());
+                bundle.putString("firstName", dataModel.getFirstName());
+                bundle.putString("lastName", dataModel.getLastName());
+                bundle.putString("middleName", dataModel.getMiddleName());
+                bundle.putString("email", dataModel.getEmail());
                 NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment_activity_main);
-                navController.navigate(R.id.navigation_account);
+                navController.navigate(R.id.navigation_account, bundle);
             } else {
                 Toast.makeText(getContext(), "Неверный логин или пароль", Toast.LENGTH_SHORT).show();
             }

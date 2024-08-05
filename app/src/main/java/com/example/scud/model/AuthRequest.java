@@ -1,16 +1,16 @@
 package com.example.scud.model;
 
 public class AuthRequest {
-    private String login;
+    private String username;
     private String password;
 
     public AuthRequest(String login, String password) {
-        this.login = login;
+        this.username = login;
         this.password = password;
     }
 
     public String getLogin() {
-        return login;
+        return username;
     }
 
     public String getPassword() {
