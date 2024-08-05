@@ -1,17 +1,11 @@
 package com.example.scud.ui.auth;
 
-import android.provider.ContactsContract;
-
-import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModel;
 
 import com.example.scud.model.DataModel;
 import com.example.scud.repository.DataRepository;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class AuthViewModel extends ViewModel {
     private DataRepository repository;

@@ -1,19 +1,12 @@
 package com.example.scud.repository;
 
-import android.app.Activity;
-import android.provider.ContactsContract;
-import android.widget.Toast;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 
-import com.example.scud.MainActivity;
-import com.example.scud.R;
 import com.example.scud.api.ApiClient;
 import com.example.scud.api.ApiService;
 import com.example.scud.model.AuthRequest;
 import com.example.scud.model.DataModel;
-import com.example.scud.ui.account.AccountFragment;
-
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 
 import retrofit2.Call;
 import retrofit2.Callback;
