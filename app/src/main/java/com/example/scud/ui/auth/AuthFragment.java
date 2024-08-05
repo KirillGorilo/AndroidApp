@@ -5,7 +5,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,9 +22,8 @@ import com.example.scud.R;
 public class AuthFragment extends Fragment {
 
     private AuthViewModel viewModel;
-
-    TextView errorLogin;
-
+    private EditText editTextlogin;
+    private EditText editTextpassword;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -31,22 +32,42 @@ public class AuthFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_auth, container, false);
         viewModel = new ViewModelProvider(this).get(AuthViewModel.class);
-        viewModel.getData().observe(getViewLifecycleOwner(), dataModel -> {
-            errorLogin = view.findViewById(R.id.erroLogin);
-            errorLogin.setText("ERROR LOGING");
+
+        Button buttonSignIn = view.findViewById(R.id.buttonSignIn);
+        editTextlogin = view.findViewById(R.id.login);
+        editTextpassword = view.findViewById(R.id.password);
+
+        buttonSignIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String login = editTextlogin.getText().toString();
+                String password = editTextpassword.getText().toString();
+
+                if (!login.isEmpty() && !password.isEmpty()) {
+                    authenticateUser(login, password);
+                } else {
+                    Toast.makeText(getContext(), "Пожалуйста введите логин и пароль", Toast.LENGTH_SHORT).show();
+                }
+            }
         });
+
         return view;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Button nextToAccount = view.findViewById(R.id.buttonSignIn);
+    }
 
-        nextToAccount.setOnClickListener(v -> {
-            NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment_activity_main);
-            navController.navigate(R.id.navigation_account);
+    private void authenticateUser(String login, String password) {
+        viewModel.authenticate(login, password).observe(getViewLifecycleOwner(), dataModel -> {
+            if (dataModel != null) {
+                Toast.makeText(getContext(), "Добро пожаловать", Toast.LENGTH_SHORT).show();
+                NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment_activity_main);
+                navController.navigate(R.id.navigation_account);
+            } else {
+                Toast.makeText(getContext(), "Неверный логин или пароль", Toast.LENGTH_SHORT).show();
+            }
         });
-
     }
 }

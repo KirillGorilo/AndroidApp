@@ -1,12 +1,14 @@
 package com.example.scud.repository;
 
 import android.app.Activity;
+import android.provider.ContactsContract;
 import android.widget.Toast;
 
 import com.example.scud.MainActivity;
 import com.example.scud.R;
 import com.example.scud.api.ApiClient;
 import com.example.scud.api.ApiService;
+import com.example.scud.model.AuthRequest;
 import com.example.scud.model.DataModel;
 import com.example.scud.ui.account.AccountFragment;
 
@@ -36,6 +38,27 @@ public class DataRepository {
                 callback.onFailure(call, t);
             }
         });
+    }
+
+    public LiveData<DataModel> authenticate(String login, String password) {
+        MutableLiveData<DataModel> data = new MutableLiveData<>();
+        AuthRequest authRequest = new AuthRequest(login, password);
+        apiService.authenticate(authRequest).enqueue(new Callback<DataModel>() {
+            @Override
+            public void onResponse(Call<DataModel> call, Response<DataModel> response) {
+                if (response.isSuccessful()) {
+                    data.setValue(response.body());
+                } else {
+                    data.setValue(null);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<DataModel> call, Throwable t) {
+                data.setValue(null);
+            }
+        });
+        return data;
     }
 
 }

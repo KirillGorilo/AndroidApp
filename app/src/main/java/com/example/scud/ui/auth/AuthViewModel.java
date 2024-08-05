@@ -1,5 +1,7 @@
 package com.example.scud.ui.auth;
 
+import android.provider.ContactsContract;
+
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -37,8 +39,12 @@ public class AuthViewModel extends ViewModel {
 
             @Override
             public void onFailure(retrofit2.Call<DataModel> call, Throwable t) {
-                System.out.println(t.getMessage());
+                DataModel messageError = new DataModel();
             }
         });
+    }
+
+    public LiveData<DataModel> authenticate(String login, String password) {
+        return repository.authenticate(login, password);
     }
 }
