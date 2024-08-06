@@ -22,9 +22,6 @@ import com.example.scud.ui.auth.AuthViewModel;
 
 public class AccountFragment extends Fragment {
 
-    private AuthViewModel authViewModel;
-    private FragmentAccountBinding binding;
-
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_account, container, false);

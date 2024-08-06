@@ -40,7 +40,6 @@ public class UsersFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-//        return inflater.inflate(R.layout.fragment_users, container, false);
         View view = inflater.inflate(R.layout.fragment_users, container, false);
 
 
@@ -63,19 +62,5 @@ public class UsersFragment extends Fragment {
             }
         });
         return view;
-//        View root = inflater.inflate(R.layout.fragment_users, container, false);
-//
-//        recyclerView = root.findViewById(R.id.usersRecyclerView);
-//        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-//
-//        usersList = new ArrayList<>();
-//        usersList.add(new UsersList("fdk", "fkdsjfds", "fdjsfsd", "fkdjs", "fdkj", "fdjfd"));
-//        usersList.add(new UsersList("User 2", "fdk", "fkdsjfds", "fdjsfsd", "fkdjs", "fdkj"));
-//        usersList.add(new UsersList("User 3", "fdk", "fkdsjfds", "fdjsfsd", "fkdjs", "fdkj"));
-//
-//        adapter = new RecyclerAdapter(usersList);
-//        recyclerView.setAdapter(adapter);
-//
-//        return root;
     }
 }

@@ -17,6 +17,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
 import com.example.scud.R;
+import com.example.scud.ui.show.ShowFragment;
 
 
 public class AuthFragment extends Fragment {
