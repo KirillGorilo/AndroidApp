@@ -7,6 +7,10 @@ import com.example.scud.api.ApiClient;
 import com.example.scud.api.ApiService;
 import com.example.scud.model.AuthRequest;
 import com.example.scud.model.DataModel;
+import com.example.scud.model.UsersList;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -14,6 +18,7 @@ import retrofit2.Response;
 
 public class DataRepository {
     ApiService apiService;
+
     public DataRepository() {
         apiService = ApiClient.getRetrofitInstance().create(ApiService.class);
     }
@@ -48,6 +53,26 @@ public class DataRepository {
 
             @Override
             public void onFailure(Call<DataModel> call, Throwable t) {
+                data.setValue(null);
+            }
+        });
+        return data;
+    }
+
+    public LiveData<List<UsersList>> getUsers() {
+        MutableLiveData<List<UsersList>> data = new MutableLiveData<>();
+        apiService.getUsers().enqueue(new Callback<List<UsersList>>() {
+            @Override
+            public void onResponse(Call<List<UsersList>> call, Response<List<UsersList>> response) {
+                if (response.isSuccessful()) {
+                    data.setValue(response.body());
+                } else {
+                    data.setValue(null);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<UsersList>> call, Throwable t) {
                 data.setValue(null);
             }
         });
