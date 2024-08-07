@@ -14,6 +14,7 @@ public class AuthViewModel extends ViewModel {
     public AuthViewModel() {
         repository = new DataRepository();
         data = new MutableLiveData<>();
+        loadData();
     }
 
     public LiveData<DataModel> getData() {
@@ -22,20 +23,7 @@ public class AuthViewModel extends ViewModel {
     }
 
     private void loadData() {
-        repository.getData(new retrofit2.Callback<DataModel>() {
-            @Override
-            public void onResponse(retrofit2.Call<DataModel> call, retrofit2.Response<DataModel> response) {
-                if (response.isSuccessful()) {
-                    data.setValue(response.body());
-                }
-
-            }
-
-            @Override
-            public void onFailure(retrofit2.Call<DataModel> call, Throwable t) {
-                DataModel messageError = new DataModel();
-            }
-        });
+        data = repository.getData();
     }
 
     public LiveData<DataModel> authenticate(String login, String password) {

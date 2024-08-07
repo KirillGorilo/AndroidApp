@@ -12,11 +12,13 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
 import com.example.scud.R;
+import com.example.scud.model.DataModel;
 import com.example.scud.ui.show.ShowFragment;
 
 
@@ -29,10 +31,9 @@ public class AuthFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-//        return inflater.inflate(R.layout.fragment_auth, container, false);
 
         View view = inflater.inflate(R.layout.fragment_auth, container, false);
-        viewModel = new ViewModelProvider(this).get(AuthViewModel.class);
+        viewModel = new ViewModelProvider(requireActivity()).get(AuthViewModel.class);
 
         Button buttonSignIn = view.findViewById(R.id.buttonSignIn);
         editTextlogin = view.findViewById(R.id.login);
@@ -64,13 +65,13 @@ public class AuthFragment extends Fragment {
         viewModel.authenticate(login, password).observe(getViewLifecycleOwner(), dataModel -> {
             if (dataModel != null) {
                 Toast.makeText(getContext(), "Добро пожаловать", Toast.LENGTH_SHORT).show();
-
                 Bundle bundle = new Bundle();
                 bundle.putString("login", dataModel.getLogin());
                 bundle.putString("firstName", dataModel.getFirstName());
                 bundle.putString("lastName", dataModel.getLastName());
                 bundle.putString("middleName", dataModel.getMiddleName());
                 bundle.putString("email", dataModel.getEmail());
+                bundle.putString("id", String.valueOf(dataModel.getPk()));
                 NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment_activity_main);
                 navController.navigate(R.id.navigation_account, bundle);
             } else {

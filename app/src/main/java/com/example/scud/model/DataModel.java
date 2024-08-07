@@ -1,7 +1,7 @@
 package com.example.scud.model;
 
 public class DataModel {
-    private int pk;
+    private int id;
     private String access;
     private String refresh;
     private String login;
@@ -11,6 +11,16 @@ public class DataModel {
     private String lastName;
     private String middleName;
     private String description;
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    private String url;
 
     public String getRefresh() {
         return refresh;
@@ -29,11 +39,11 @@ public class DataModel {
     }
 
     public int getPk() {
-        return pk;
+        return id;
     }
 
     public void setPk(int pk) {
-        this.pk = pk;
+        this.id = pk;
     }
 
     public String getLogin() {

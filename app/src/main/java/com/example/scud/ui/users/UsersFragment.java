@@ -28,10 +28,8 @@ import java.util.List;
 public class UsersFragment extends Fragment {
 
     UsersViewModel viewModel;
-    private UsersViewModel mViewModel;
     private RecyclerView recyclerView;
     private RecyclerAdapter adapter;
-    private List<UsersList> usersList;
 
     public static UsersFragment newInstance() {
         return new UsersFragment();
@@ -43,7 +41,7 @@ public class UsersFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_users, container, false);
 
 
-        viewModel = new ViewModelProvider(this).get(UsersViewModel.class);
+        viewModel = new ViewModelProvider(requireActivity()).get(UsersViewModel.class);
         recyclerView = view.findViewById(R.id.usersRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter = new RecyclerAdapter(new ArrayList<>());
