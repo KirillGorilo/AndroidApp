@@ -12,6 +12,16 @@ public class DataModel {
     private String middleName;
     private String description;
 
+    public String getErrorMessage() {
+        return errorMessage;
+    }
+
+    public void setErrorMessage(String errorMessage) {
+        this.errorMessage = errorMessage;
+    }
+
+    private String errorMessage;
+
     public String getUrl() {
         return url;
     }

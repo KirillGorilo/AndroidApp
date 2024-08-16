@@ -17,6 +17,9 @@ public interface ApiService {
     @POST("api/login/")
     Call<DataModel> authenticate(@Body AuthRequest authRequest);
 
+    @POST("api/register/")
+    Call<DataModel> registration(@Body AuthRequest authRequest);
+
     @GET("api/users")
     Call<List<UsersList>> getUsers();
 

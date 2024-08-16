@@ -9,6 +9,7 @@ import com.example.scud.model.AuthRequest;
 import com.example.scud.model.DataModel;
 import com.example.scud.model.UsersList;
 
+import java.io.IOException;
 import java.util.List;
 
 import retrofit2.Call;
@@ -45,6 +46,36 @@ public class DataRepository {
                 data.setValue(null);
             }
         });
+        return data;
+    }
+
+    public LiveData<DataModel> registration(String username, String email, String password) {
+        data = new MutableLiveData<>();
+        AuthRequest authRequest = new AuthRequest(username, email, password);
+        apiService.registration(authRequest).enqueue(new Callback<DataModel>() {
+            @Override
+            public void onResponse(Call<DataModel> call, Response<DataModel> response) {
+                if (response.isSuccessful()) {
+                    data.setValue(response.body());
+                } else {
+                    try {
+                        String errorMessage = response.errorBody().string(); // извлечение сообщения об ошибке
+                        DataModel errorDataModel = new DataModel();
+                        errorDataModel.setErrorMessage(errorMessage);
+                        data.setValue(errorDataModel);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                        data.setValue(null);
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<DataModel> call, Throwable t) {
+                data.setValue(null);
+            }
+        });
+
         return data;
     }
 

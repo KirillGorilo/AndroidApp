@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_auth">
+    app:startDestination="@+id/navigation_account">
 
     <fragment
         android:id="@+id/navigation_scan"
@@ -26,16 +26,6 @@
         <action
             android:id="@+id/action_navigation_account_to_navigation_users"
             app:destination="@id/navigation_users" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/navigation_auth"
-        android:name="com.example.scud.ui.auth.AuthFragment"
-        android:label="Авторизация"
-        tools:layout="@layout/fragment_auth">
-        <action
-            android:id="@+id/action_navigation_auth_to_navigation_account"
-            app:destination="@id/navigation_account" />
     </fragment>
 
     <fragment
