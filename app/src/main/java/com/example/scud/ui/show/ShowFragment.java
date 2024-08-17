@@ -38,7 +38,7 @@ public class ShowFragment extends Fragment {
         Button showQR = view.findViewById(R.id.buttonUpdateQR);
         showViewModel = new ViewModelProvider(this).get(ShowViewModel.class);
         viewModel = new ViewModelProvider(requireActivity()).get(AuthViewModel.class);
-        Bundle bundle = getArguments();
+        viewModel.getData();
 
 
         viewModel.getData().observe(getViewLifecycleOwner(), new Observer<DataModel>() {

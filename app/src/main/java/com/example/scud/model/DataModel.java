@@ -5,6 +5,16 @@ public class DataModel {
     private String access;
     private String refresh;
     private String login;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    private String username;
     private String email;
     private String qrcode;
     private String firstName;

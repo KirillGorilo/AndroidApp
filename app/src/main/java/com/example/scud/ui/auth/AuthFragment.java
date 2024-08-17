@@ -1,5 +1,6 @@
 package com.example.scud.ui.auth;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +18,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
+import com.example.scud.MainActivity;
 import com.example.scud.R;
 import com.example.scud.model.DataModel;
 import com.example.scud.ui.show.ShowFragment;
@@ -38,6 +40,15 @@ public class AuthFragment extends Fragment {
         Button buttonSignIn = view.findViewById(R.id.buttonSignIn);
         editTextlogin = view.findViewById(R.id.login);
         editTextpassword = view.findViewById(R.id.password);
+
+        Bundle arguments = getArguments();
+
+        if (arguments != null) {
+            String login = arguments.getString("login");
+            String password = arguments.getString("password");
+            editTextlogin.setText(login);
+            editTextpassword.setText(password);
+        }
 
         buttonSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,16 +75,15 @@ public class AuthFragment extends Fragment {
     private void authenticateUser(String login, String password) {
         viewModel.authenticate(login, password).observe(getViewLifecycleOwner(), dataModel -> {
             if (dataModel != null) {
-                Toast.makeText(getContext(), "Добро пожаловать", Toast.LENGTH_SHORT).show();
-                Bundle bundle = new Bundle();
-                bundle.putString("login", dataModel.getLogin());
-                bundle.putString("firstName", dataModel.getFirstName());
-                bundle.putString("lastName", dataModel.getLastName());
-                bundle.putString("middleName", dataModel.getMiddleName());
-                bundle.putString("email", dataModel.getEmail());
-                bundle.putString("id", String.valueOf(dataModel.getPk()));
-                NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment_activity_main);
-                navController.navigate(R.id.navigation_account, bundle);
+                Intent intent = new Intent(getActivity(), MainActivity.class);
+                intent.putExtra("login", dataModel.getLogin());
+                intent.putExtra("email", dataModel.getEmail());
+                intent.putExtra("id", dataModel.getPk());
+                intent.putExtra("firstName", dataModel.getFirstName());
+                intent.putExtra("lastName", dataModel.getLastName());
+                intent.putExtra("middleName", dataModel.getMiddleName());
+
+                startActivity(intent);
             } else {
                 Toast.makeText(getContext(), "Неверный логин или пароль", Toast.LENGTH_SHORT).show();
             }

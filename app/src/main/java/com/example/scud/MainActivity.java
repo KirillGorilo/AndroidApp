@@ -33,14 +33,23 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
 
+        Bundle bundle = new Bundle();
+        bundle.putString("login", getIntent().getStringExtra("login"));
+        bundle.putString("id", getIntent().getStringExtra("id"));
+        bundle.putString("firstName", getIntent().getStringExtra("firstName"));
+        bundle.putString("lastName", getIntent().getStringExtra("lastName"));
+        bundle.putString("middleName", getIntent().getStringExtra("middleName"));
+        bundle.putString("email", getIntent().getStringExtra("email"));
+
+        navController.navigate(R.id.navigation_account, bundle);
     }
 
-//    @Override
-//    public boolean onSupportNavigateUp() {
-//        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
-//        navController.navigate(R.id.navigation_account);
-//        return true;
-//
-//    }
+    @Override
+    public boolean onSupportNavigateUp() {
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
+        navController.navigate(R.id.navigation_account);
+        return true;
+
+    }
 
 }

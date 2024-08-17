@@ -34,7 +34,7 @@
         android:layout_marginBottom="44dp"
         android:ems="10"
         android:hint="Логин"
-        android:text="admin3"
+        android:text="admin4"
         android:inputType="text"
         app:layout_constraintBottom_toTopOf="@+id/password"
         app:layout_constraintEnd_toEndOf="parent"

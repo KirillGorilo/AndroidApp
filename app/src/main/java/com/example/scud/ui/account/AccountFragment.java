@@ -21,10 +21,12 @@ import com.example.scud.ui.auth.AuthViewModel;
 
 
 public class AccountFragment extends Fragment {
+    private AuthViewModel viewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_account, container, false);
+
         EditText firstName = view.findViewById(R.id.editTextFirstName);
         EditText middleName = view.findViewById(R.id.editTextMiddleName);
         EditText lastName = view.findViewById(R.id.editTextLastName);
@@ -39,6 +41,9 @@ public class AccountFragment extends Fragment {
             middleName.setHint(args.getString("middleName"));
             email.setHint(args.getString("email"));
         }
+        viewModel = new ViewModelProvider(requireActivity()).get(AuthViewModel.class);
+
+
         Button buttonAllUsers = view.findViewById(R.id.buttonAllUsers);
         buttonAllUsers.setOnClickListener(new View.OnClickListener() {
             @Override

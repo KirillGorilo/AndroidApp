@@ -7,6 +7,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
+import androidx.navigation.NavOptions;
 import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
@@ -37,6 +38,7 @@ public class RegistrationFragment extends Fragment {
         editTextLogin = view.findViewById(R.id.regLogin);
         editTextEmail = view.findViewById(R.id.regEmail);
         editTextPassword = view.findViewById(R.id.regPassword);
+        Bundle bundle = new Bundle();
 
         registrationButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,8 +47,11 @@ public class RegistrationFragment extends Fragment {
                 String email = editTextEmail.getText().toString();
                 String password = editTextPassword.getText().toString();
 
+                bundle.putString("login", login);
+                bundle.putString("password", password);
+
                 if (!login.isEmpty() && !password.isEmpty() && !email.isEmpty()) {
-                    registrationUser(login, email, password);
+                    registrationUser(login, email, password, bundle);
                 }
             }
         });
@@ -54,13 +59,13 @@ public class RegistrationFragment extends Fragment {
         return view;
     }
 
-    private void registrationUser(String username, String email, String password) {
+    private void registrationUser(String username, String email, String password, Bundle bundle) {
         viewModel.registration(username, email, password).observe(getViewLifecycleOwner(), dataModel -> {
             if (dataModel.getErrorMessage() == null) {
                 Toast.makeText(getContext(), "Успешная регистрация!!! Теперь необходимо войти в систему", Toast.LENGTH_SHORT).show();
 
                 NavController navController = Navigation.findNavController(getActivity(), R.id.nav_host_auth_fragment);
-                navController.navigate(R.id.nav_log);
+                navController.navigate(R.id.nav_log, bundle);
             } else {
                 Toast.makeText(getContext(), dataModel.getErrorMessage(), Toast.LENGTH_LONG).show();
             }
