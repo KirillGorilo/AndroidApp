@@ -22,7 +22,6 @@ import com.example.scud.ui.auth.AuthViewModel;
 
 
 public class AccountFragment extends Fragment {
-    private AuthViewModel viewModel;
     private SharedViewModel sharedViewModel;
 
 
@@ -46,8 +45,6 @@ public class AccountFragment extends Fragment {
             email.setHint(args.getString("email"));
             sharedViewModel.setSelectedData(args.getString("id"));
         }
-        viewModel = new ViewModelProvider(requireActivity()).get(AuthViewModel.class);
-
 
         Button buttonAllUsers = view.findViewById(R.id.buttonAllUsers);
         buttonAllUsers.setOnClickListener(new View.OnClickListener() {
