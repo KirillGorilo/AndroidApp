@@ -15,10 +15,12 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.scud.MainActivity;
 import com.example.scud.R;
 import com.example.scud.databinding.FragmentShowBinding;
 import com.example.scud.model.DataModel;
 import com.example.scud.repository.DataRepository;
+import com.example.scud.ui.SharedViewModel;
 import com.example.scud.ui.account.AccountFragment;
 import com.example.scud.ui.auth.AuthViewModel;
 
@@ -27,7 +29,6 @@ import javax.security.auth.callback.Callback;
 public class ShowFragment extends Fragment {
 
     private ImageView qrCode;
-    private AuthViewModel viewModel;
     private ShowViewModel showViewModel;
     private int id;
 
@@ -37,18 +38,13 @@ public class ShowFragment extends Fragment {
 
         Button showQR = view.findViewById(R.id.buttonUpdateQR);
         showViewModel = new ViewModelProvider(this).get(ShowViewModel.class);
-        viewModel = new ViewModelProvider(requireActivity()).get(AuthViewModel.class);
-        viewModel.getData();
-
-
-        viewModel.getData().observe(getViewLifecycleOwner(), new Observer<DataModel>() {
+        SharedViewModel sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
+        sharedViewModel.getSelectedData().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
-            public void onChanged(DataModel dataModel) {
-                id = dataModel.getPk();
+            public void onChanged(String pk) {
+                id = Integer.parseInt(pk);
             }
         });
-
-
 
         showQR.setOnClickListener(new View.OnClickListener() {
             @Override

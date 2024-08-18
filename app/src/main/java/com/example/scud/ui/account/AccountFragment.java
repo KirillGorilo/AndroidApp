@@ -17,11 +17,14 @@ import androidx.navigation.Navigation;
 
 import com.example.scud.R;
 import com.example.scud.databinding.FragmentAccountBinding;
+import com.example.scud.ui.SharedViewModel;
 import com.example.scud.ui.auth.AuthViewModel;
 
 
 public class AccountFragment extends Fragment {
     private AuthViewModel viewModel;
+    private SharedViewModel sharedViewModel;
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -33,6 +36,7 @@ public class AccountFragment extends Fragment {
         EditText login = view.findViewById(R.id.editTextLogin);
         EditText email = view.findViewById(R.id.editTextMail);
 
+        sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
         Bundle args = getArguments();
         if (args != null) {
             login.setHint(args.getString("login"));
@@ -40,6 +44,7 @@ public class AccountFragment extends Fragment {
             lastName.setHint(args.getString("lastName"));
             middleName.setHint(args.getString("middleName"));
             email.setHint(args.getString("email"));
+            sharedViewModel.setSelectedData(args.getString("id"));
         }
         viewModel = new ViewModelProvider(requireActivity()).get(AuthViewModel.class);
 

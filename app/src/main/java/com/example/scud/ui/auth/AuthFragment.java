@@ -21,6 +21,7 @@ import androidx.navigation.Navigation;
 import com.example.scud.MainActivity;
 import com.example.scud.R;
 import com.example.scud.model.DataModel;
+import com.example.scud.ui.SharedViewModel;
 import com.example.scud.ui.show.ShowFragment;
 
 
@@ -78,11 +79,10 @@ public class AuthFragment extends Fragment {
                 Intent intent = new Intent(getActivity(), MainActivity.class);
                 intent.putExtra("login", dataModel.getLogin());
                 intent.putExtra("email", dataModel.getEmail());
-                intent.putExtra("id", dataModel.getPk());
+                intent.putExtra("id", String.valueOf(dataModel.getPk()));
                 intent.putExtra("firstName", dataModel.getFirstName());
                 intent.putExtra("lastName", dataModel.getLastName());
                 intent.putExtra("middleName", dataModel.getMiddleName());
-
                 startActivity(intent);
             } else {
                 Toast.makeText(getContext(), "Неверный логин или пароль", Toast.LENGTH_SHORT).show();

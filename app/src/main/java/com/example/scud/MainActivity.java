@@ -2,9 +2,13 @@ package com.example.scud;
 
 import android.os.Bundle;
 
+import com.example.scud.model.DataModel;
+import com.example.scud.ui.SharedViewModel;
+import com.example.scud.ui.auth.AuthViewModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -22,7 +26,6 @@ public class MainActivity extends AppCompatActivity {
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
         BottomNavigationView navView = findViewById(R.id.nav_view);
 
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
